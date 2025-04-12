@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static Scanner console = new Scanner(System.in);
+    public static Scanner console = new Scanner("fractionsTemp.txt\nquit");
     private static String filename;
 
     public static void main(String[] args) {
@@ -56,41 +56,26 @@ public class Main {
             fractions[line] = new Fraction(fileReader.nextLine());
         }
 
-        int uniqueFracs = 1;
+        Fraction[] uniqueFractions = new Fraction[fileLength];
+        Arrays.stream(fractions).distinct().toList().toArray(uniqueFractions);
 
-        for (int i = 0; i < fractions.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (fractions[i].equals(fractions[j])) {
-                    fractions[i] = fractions[j];
-                } else {
-                    uniqueFracs++;
-                }
-            }
+        StringBuilder output = new StringBuilder();
+        String separator = " has a count of ";
+        String newLine = "\n";
+        for (int i = 0; i < uniqueFractions.length; i++) {
+            if (uniqueFractions[i] == null) break;
+            int finalI = i;
+            uniqueFractions[i].reduce();
+            output.append(uniqueFractions[i]);
+            output.append(separator);
+            output.append(
+                    Arrays.stream(fractions)
+                            .filter(fraction ->
+                                    fraction.equals(uniqueFractions[finalI]))
+                            .count()
+            );
+            output.append(newLine);
         }
-
-        Fraction[] seenFracs = new Fraction[uniqueFracs];
-        int seenFracsNextIndex = 0;
-
-        for (Fraction frac : fractions) {
-            boolean unique = true;
-            for (Fraction check : seenFracs) {
-                if (frac.equals(check)) {
-                    unique = false;
-                    break;
-                }
-            }
-
-            if (!unique) continue;
-
-            int thisFracCount = 0;
-            for (Fraction check : fractions) {
-                if (frac.equals(check)) thisFracCount++;
-            }
-
-            frac.reduce();
-            System.out.println(frac + " has a count of " + thisFracCount);
-            seenFracs[seenFracsNextIndex] = frac;
-            seenFracsNextIndex++;
-        }
+        System.out.println(output);
     }
 }
