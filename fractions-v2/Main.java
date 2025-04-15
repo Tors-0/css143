@@ -9,25 +9,41 @@ import java.util.Scanner;
  * @version 2025.04.10
  */
 public class Main {
-    public static Scanner console = new Scanner("fractionsTemp.txt\nquit");
-    private static String filename;
+    /**
+     * single console scanner not to be redefined in this class
+     */
+    public static Scanner console = new Scanner(System.in);
 
+    /**
+     * creates and runs a Main object
+     * @param args command line arguments (ignored)
+     */
     public static void main(String[] args) {
         Main main = new Main();
         main.run();
     }
 
+    /**
+     * Prompts the user for an input filename and then process it to find the
+     * number of fractions equivalent to each other in the file
+     */
     private void run() {
+        String filename;
         do {
             System.out.print("Filename: ");
             filename = console.nextLine();
             if ("quit".equalsIgnoreCase(filename)) break;
 
-            processFile();
+            processFile(filename);
         } while (!"quit".equalsIgnoreCase(filename));
         System.out.println("All done!");
     }
 
+    /**
+     * Read the number of lines in a text file (probably works on other filetypes too)
+     * @param filename the relative filename of the text file
+     * @return the number of lines in the file
+     */
     private static int readFileLength(String filename) {
         Scanner fileReader = null;
         try {
@@ -45,7 +61,11 @@ public class Main {
         return length;
     }
 
-    private static void processFile() {
+    /**
+     * Checks a file and prints out the number of equivalent fractions inside the file
+     * @param filename the relative path of the file
+     */
+    private static void processFile(String filename) {
         Scanner fileReader = null;
         try {
             fileReader = new Scanner(new FileInputStream(filename));
