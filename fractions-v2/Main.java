@@ -3,6 +3,11 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * A demo class that uses the {@link Fraction} class to show off its capabilities
+ * @author Rae Johnston
+ * @version 2025.04.10
+ */
 public class Main {
     public static Scanner console = new Scanner("fractionsTemp.txt\nquit");
     private static String filename;

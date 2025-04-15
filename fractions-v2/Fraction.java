@@ -39,21 +39,35 @@ public class Fraction {
     }
 
     /**
-     *
+     * Creates a new fraction from one string that contains a fraction (-)x/y
      * @param unsplit One {@link String} following the regex {@code (\d+\/\d+)}
      */
     public Fraction(String unsplit) {
         this(unsplit.split("/"));
     }
+
+    /**
+     * deep copy constructor
+     * @param other Fraction to copy
+     */
     public Fraction(Fraction other) {
         this.den = other.den;
         this.num = other.num;
     }
 
+    /**
+     * Creates a Fraction from two parseable {@link String}s
+     * @param num Must contain a parseable integer
+     * @param den Must contian a parseable integer
+     */
     public Fraction(String num, String den) {
         this(Integer.parseInt(num), Integer.parseInt(den));
     }
 
+    /**
+     * reduces both numerator and denominator to their simplest forms. will
+     * not reduce x/1 to x as it must stay in fraction form
+     */
     public void reduce() {
         int limit = Math.min(num, den);
         for (int i = limit; i > 1; i--) {
@@ -69,12 +83,23 @@ public class Fraction {
         }
     }
 
+    /**
+     * This fraction in (-)x/y form.
+     * @return a String representation of the object
+     */
     @Override
     public String toString() {
         this.reduce();
         return num + "/" + den;
     }
 
+    /**
+     * Checks for equality between this Fraction and another object.
+     * if the other object is not an instance of Fraction, always false.
+     * @param obj does not need to be a reduced Fraction to count.
+     * @return true if both objects are mathematically equal Fractions, false
+     * otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
