@@ -15,6 +15,17 @@ public class Point2D {
     private int x;
     private int y;
 
+    public Point2D() {}
+
+    public Point2D(Point2D other) {
+        this.x = other.x;
+        this.y = other.y;
+        /*
+        this doesn't need to use getX() or getY() because the class has access
+        to those private fields
+        */
+    }
+
     public int getX() {
         return x;
     }
@@ -45,6 +56,7 @@ public class Point2D {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) return true;
         if (obj instanceof Point2D other) {
             return (this.x == other.x) && (this.y == other.y);
         }
