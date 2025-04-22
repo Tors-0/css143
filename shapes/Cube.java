@@ -30,12 +30,16 @@ public class Cube extends Square {
         }
     }
 
+    // computes the offset needed to draw a second square
+    // and make it look like an isometric cube
     private int getOffset2d() {
         return (int) Math.round(
                 Math.sqrt((double) (this.getLength() * this.getLength()) / 2)
         );
     }
 
+    // creates a second bounding rectangle, offset by the offset amount from
+    // getOffset2d, then conjoins them to get an accurate bounding box
     @Override
     public Rectangle getBoundingRect() {
         int offset = this.getOffset2d();
@@ -44,7 +48,7 @@ public class Cube extends Square {
         return super.getBoundingRect().union(offsetRect);
     }
 
-    public static Cube getRandomSquare3d() {
+    public static Cube getRandomCube() {
         Random randy = new Random();
 
         int length = randy.nextInt(10, 30);

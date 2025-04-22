@@ -7,7 +7,7 @@ public class MyPanel extends AnimatedPanel {
         } else if (rand < 0.5) {
             return Oval.getRandomOval();
         } else if (rand < 0.75) {
-            return Cube.getRandomSquare3d();
+            return Cube.getRandomCube();
         } else {
             return Circle.getRandomCircle();
         }
@@ -15,6 +15,6 @@ public class MyPanel extends AnimatedPanel {
 
     @Override
     public String[] getShapeClassNames() {
-        return new String[]{"Square", "Circle", "Oval", "Square3d"};
+        return new String[]{"Square", "Circle", "Oval", "Cube"};
     }
 }
