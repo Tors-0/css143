@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.util.Random;
 
-public class Square3d extends Square {
-    public Square3d(int x, int y, int length) {
+public class Cube extends Square {
+    public Cube(int x, int y, int length) {
         super(x, y, length);
     }
 
@@ -44,14 +44,14 @@ public class Square3d extends Square {
         return super.getBoundingRect().union(offsetRect);
     }
 
-    public static Square3d getRandomSquare3d() {
+    public static Cube getRandomSquare3d() {
         Random randy = new Random();
 
         int length = randy.nextInt(10, 30);
         int maxX = Main.WIDTH - length;
         int maxY = MyPanel.FLOOR - length;
 
-        return new Square3d(
+        return new Cube(
                 randy.nextInt(0, maxX),
                 randy.nextInt(0, maxY),
                 length

@@ -1,5 +1,3 @@
-import java.lang.reflect.Method;
-
 public class MyPanel extends AnimatedPanel {
     @Override
     public Shape getRandomShape() {
@@ -9,7 +7,7 @@ public class MyPanel extends AnimatedPanel {
         } else if (rand < 0.5) {
             return Oval.getRandomOval();
         } else if (rand < 0.75) {
-            return Square3d.getRandomSquare3d();
+            return Cube.getRandomSquare3d();
         } else {
             return Circle.getRandomCircle();
         }
