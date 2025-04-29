@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Oval extends Circle {
     private int width;
+
     public Oval(int x, int y, int length, int width) {
         super(x, y, length);
         this.width = width;

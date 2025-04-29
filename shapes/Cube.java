@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Cube extends Square {
+
     public Cube(int x, int y, int length) {
         super(x, y, length);
     }
