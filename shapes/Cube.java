@@ -5,7 +5,9 @@ public class Cube extends Square {
 
     public Cube(int x, int y, int length) {
         super(x, y, length);
+        this.offsetDist = getOffset3d();
     }
+    private int offsetDist;
 
     @Override
     public void draw(Graphics g) {
@@ -17,25 +19,24 @@ public class Cube extends Square {
                 this.getLength(),
                 this.getLength()
         );
-        int offset2d = getOffset2d();
         g.drawRect(
-                this.getX() + offset2d,
-                this.getY() + offset2d,
+                this.getX() + offsetDist,
+                this.getY() + offsetDist,
                 this.getLength(),
                 this.getLength()
         );
         for (int iX : x0) {
             for (int iY : y0) {
-                g.drawLine(iX, iY, iX + offset2d, iY + offset2d);
+                g.drawLine(iX, iY, iX + offsetDist, iY + offsetDist);
             }
         }
     }
 
     // computes the offset needed to draw a second square
     // and make it look like an isometric cube
-    private int getOffset2d() {
+    private int getOffset3d() {
         return (int) Math.round(
-                Math.sqrt((double) (this.getLength() * this.getLength()) / 2)
+                Math.sqrt(this.getLength() * this.getLength() * 3) / 3
         );
     }
 
@@ -43,16 +44,15 @@ public class Cube extends Square {
     // getOffset2d, then conjoins them to get an accurate bounding box
     @Override
     public Rectangle getBoundingRect() {
-        int offset = this.getOffset2d();
         Rectangle offsetRect = super.getBoundingRect();
-        offsetRect.translate(offset, offset);
+        offsetRect.translate(offsetDist, offsetDist);
         return super.getBoundingRect().union(offsetRect);
     }
 
     public static Cube getRandomCube() {
         Random randy = new Random();
 
-        int length = randy.nextInt(10, 30);
+        int length = randy.nextInt(5, 60);
         int maxX = Main.WIDTH - length;
         int maxY = MyPanel.FLOOR - length;
 
@@ -61,5 +61,10 @@ public class Cube extends Square {
                 randy.nextInt(0, maxY),
                 length
         );
+    }
+
+    @Override
+    public double getArea() {
+        return super.getArea() * 6;
     }
 }

@@ -1,10 +1,108 @@
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class Testing {
     public static void main(String[] args) {
-        System.out.println(sumIntegers("Java 12.3 8 10 12 18 22 35.3"));
+        ArrayList<String> list = new ArrayList<>();
+        list.add("be");
+        list.add("be");
+        list.add("is");
+        list.add("not");
+        list.add("or");
+        list.add("question");
+        list.add("that");
+        list.add("the");
+        list.add("to");
+        list.add("to");
+        removeDuplicates(list);
+        System.out.println(list.toString());
+    }
+
+    public static void biggestFamily(String filename) {
+        TreeMap<String, List<String>> famMap = new TreeMap<>();
+
+        try {
+            Scanner file = new Scanner(new FileInputStream(filename));
+
+            String[] names;
+            while (file.hasNextLine()) {
+                names = file.nextLine().split(" ");
+
+                if (!famMap.containsKey(names[1])) {
+                    famMap.put(names[1], new ArrayList<>());
+                }
+                famMap.get(names[1]).add(names[0]);
+            }
+
+            file.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("err" + e.getMessage());
+            e.printStackTrace();
+        }
+
+        int longestFam = 0;
+        List<String> remove = new ArrayList<>();
+        for (String key : famMap.keySet()) {
+            int len = famMap.get(key).size();
+            if (len >= longestFam) {
+                longestFam = len;
+            }
+        }
+
+        for (String key : famMap.keySet()) {
+            if (famMap.get(key).size() < longestFam) {
+                remove.add(key);
+            }
+        }
+        for (String key : remove) {
+            famMap.remove(key);
+        }
+
+        for (String key : famMap.navigableKeySet()) {
+            System.out.print(key + " family: ");
+            for (String value : famMap.get(key).stream().sorted().toList()) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static HashMap<String, Integer> intersect(
+            HashMap<String, Integer> map1,
+            HashMap<String, Integer> map2
+    ) {
+        HashMap<String, Integer> outMap = new HashMap<>();
+        for (String str : map1.keySet()) {
+            if (map2.containsKey(str) && map2.get(str).equals(map1.get(str))) {
+                outMap.put(str, map1.get(str));
+            }
+        }
+
+        return outMap;
+    }
+
+    public static void removeDuplicates(ArrayList<String> list) {
+        List<String> outList = list.stream().distinct().toList();
+        list.clear();
+        list.addAll(outList);
+    }
+
+    static void countDown(int n) {
+        System.out.print(n + " ");
+        if (n > 0) countDown(n - 1);
+    }
+
+    static String goAgain(String str, int index) {
+        if (index >= str.length())
+            return str;
+        return str + goAgain(str.substring(index), index + 1);
+    }
+
+    // limited at n=20
+    static long factorial(int n) {
+        if (n == 2) return 2;
+        else return n * factorial(n-1);
     }
 
     static int sumIntegers(String s) {
