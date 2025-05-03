@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Shape {
+class Shape {
      /**
       * constraint 1: must be non-negative <br>
       * constraint 2: must be smaller than display width

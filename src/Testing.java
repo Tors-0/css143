@@ -3,20 +3,13 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Testing {
+    public static class Hello {
+        public Hello() {
+
+        }
+    }
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
-        list.add("be");
-        list.add("be");
-        list.add("is");
-        list.add("not");
-        list.add("or");
-        list.add("question");
-        list.add("that");
-        list.add("the");
-        list.add("to");
-        list.add("to");
-        removeDuplicates(list);
-        System.out.println(list.toString());
     }
 
     public static void biggestFamily(String filename) {
