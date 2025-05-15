@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/lab/lab5" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/calculator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stackgame" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lab/lab6" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -9,25 +9,17 @@ public class Testing {
         }
     }
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-
-        System.out.println(list);
-
-        list.remove(4);
-        System.out.println("removed element at 4");
-
-        System.out.println(list);
-
-        list.remove((Integer) 4);
-        System.out.println("removed element 4");
-
-        System.out.println(list);
+        Object a = new Object();
+        Object b = new Object();
+        Map<String, Object> map = new HashMap<>();
+        map.put("hi", a);
+        map.put("yes", b);
+        map.put("no", a);
+        String sum = "";
+        for (Object i : map.values()) {
+            System.out.println(i);
+        }
+        System.out.println(sum);
     }
 
     public static void biggestFamily(String filename) {
