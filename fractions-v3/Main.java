@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 
@@ -16,46 +15,46 @@ import java.util.Scanner;
  */
 public class Main {
 
-   private FractionTracker tracker = null;
-   
-   public static void main(String[] args) {
-      Main main = new Main();
-      main.run();
-   }
-   
-   public Main() {
-      tracker = new FractionTracker();
-   }
-   
-   public void run() {
-      boolean done = false;
-      Scanner console = new Scanner(System.in);
-      while (!done) {
-         System.out.print("Command: ");
-         String filename = console.nextLine().strip();
-         if (filename.equalsIgnoreCase("quit")) {
-            System.out.println("All done!");
-            done = true;
-         } else  if (filename.length() > 0 && !UnitTestRunner.processCommand(filename, this::processCommand)) {
-            System.out.println(processCommand(filename));
-         }
-      }
-      console.close();
-   }
-   
-   public String processCommand(String cmd) {
-      if (cmd.equalsIgnoreCase("sortaf")) {
-         // ask tracker to sort ascending by Fraction
-         return tracker.toString();
-      }
-      if (cmd.equalsIgnoreCase("sortdf")) {
-         // ask tracker to sort descending by Fraction
-         return tracker.toString();
-      }
-      // TODO: complete the remaining commands
+    private FractionTracker tracker = null;
 
-      return "TODO: return output. Don't print!";
-   }
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.run();
+    }
+
+    public Main() {
+        tracker = new FractionTracker();
+    }
+
+    public void run() {
+        boolean done = false;
+        Scanner console = new Scanner(System.in);
+        while (!done) {
+            System.out.print("Command: ");
+            String filename = console.nextLine().strip();
+            if (filename.equalsIgnoreCase("quit")) {
+                System.out.println("All done!");
+                done = true;
+            } else  if (filename.length() > 0 && !UnitTestRunner.processCommand(filename, this::processCommand)) {
+                System.out.println(processCommand(filename));
+            }
+        }
+        console.close();
+    }
+
+    public String processCommand(String cmd) {
+        if (cmd.equalsIgnoreCase("sortaf")) {
+            // ask tracker to sort ascending by Fraction
+            return tracker.toString();
+        }
+        if (cmd.equalsIgnoreCase("sortdf")) {
+            // ask tracker to sort descending by Fraction
+            return tracker.toString();
+        }
+        // TODO: complete the remaining commands
+
+        return "TODO: return output. Don't print!";
+    }
 
 
 }

@@ -12,7 +12,7 @@ import java.awt.geom.*;
 
 class Spray extends Shape {
 	private final int RADIUS = 20;
-	private final int DENSITY = 5;
+	private final int DENSITY = 1;
 	
 	
 	public Spray( int a, int b ) {

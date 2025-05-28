@@ -20,8 +20,8 @@ public class Lab7Driver {
         System.out.println("Testing the LinkedQueue class.");
         linkedQueueTest();
 
-//        System.out.println("Testing the Palindromes class.");
-//        palindromesTest();
+        System.out.println("Testing the Palindromes class.");
+        palindromesTest();
 
 //        System.out.println("Testing the RoyalSuitors class.");
 
