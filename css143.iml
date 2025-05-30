@@ -8,7 +8,6 @@
       <sourceFolder url="file://$MODULE_DIR$/stackgame" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lab/lab7" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problemset3" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/fractions-v3" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/trees" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>

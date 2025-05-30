@@ -52,7 +52,24 @@ public class BSTTree extends Tree {
         // child classes to reuse this method.
         BSTNode newNode = createNewNode(value);
 
-        // TODO: add the newNode iteratively
+        BSTNode root = (BSTNode) this.getRoot();
+        while (root != null) {
+            if (value < root.getInfo()) {
+                if (root.getLeft() == null) {
+                    root.setLeft(newNode);
+                    break;
+                } else {
+                    root = root.getLeft();
+                }
+            } else {
+                if (root.getRight() == null) {
+                    root.setRight(newNode);
+                    break;
+                } else {
+                    root = root.getRight();
+                }
+            }
+        }
 
         // TODO: Then update to you add the node recursively
         // using the add() method in the BSTNode class.

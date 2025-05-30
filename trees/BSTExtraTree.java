@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class BSTExtraTree extends BSTTree {
 
     public BSTExtraTree(BSTExtraNode root) {
@@ -47,8 +49,14 @@ public class BSTExtraTree extends BSTTree {
         BSTExtraNode root = new BSTExtraNode(value);
 
         BSTExtraTree tree = new BSTExtraTree(root);
+
         // have a total of 15-25 nodes in this tree
-        // TODO:
+        Random source = new Random();
+        int size = source.nextInt(15, 25);
+
+        for (int i = 0; i < size;) {
+            if (tree.add(source.nextInt(100))) i++;
+        }
 
         // Process all the information in our tree
         root.processInfo();
