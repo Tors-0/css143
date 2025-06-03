@@ -110,7 +110,6 @@ public class Fraction implements Comparable<Fraction> {
     // Add the methods below
 
     public Fraction sub(Fraction other) {
-        // TODO: subtract. this - other
         // very helpful in implementing compareTo
         return new Fraction(
                 num * other.den - den * other.num,
