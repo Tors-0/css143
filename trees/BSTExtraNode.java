@@ -32,12 +32,12 @@ public class BSTExtraNode extends BSTNode {
     }
 
     public boolean contains(BSTExtraNode other) {
-        if (this.compareTo(other) < 0) {
+        if (this.compareTo(other) > 0) {
             if (getLeft() != null) {
                 return ((BSTExtraNode) getLeft()).contains(other);
             }
             return false;
-        } else if (this.compareTo(other) > 0) {
+        } else if (this.compareTo(other) < 0) {
             if (getRight() != null) {
                 return ((BSTExtraNode) getRight()).contains(other);
             }
