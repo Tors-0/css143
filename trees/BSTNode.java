@@ -28,31 +28,33 @@ public class BSTNode extends Node implements Comparable<BSTNode> {
     }
 
     public void setLeft(BSTNode node) {
-        // TODO
+        getChildren().set(0, node);
     }
 
     public void setRight(BSTNode node) {
-        // TODO
+        getChildren().set(1, node);
     }
 
     public BSTNode getLeft() {
-        // TODO
-        return null;
+        return (BSTNode) getChildren().get(0);
     }
 
     public BSTNode getRight() {
-        // TODO
-        return null;
+        return (BSTNode) getChildren().get(1);
     }
 
     public int getInfo() {
-        // TODO
-        return 0;
+        return info;
     }
 
+    @Override
     public String toString() {
-        // TODO
-        return "   This is my popup display";
+        return "\n\n Info:\n " + info;
+    }
+
+    @Override
+    public String getNodeDisplay() {
+        return String.valueOf(info);
     }
 
     @Override
@@ -78,16 +80,29 @@ public class BSTNode extends Node implements Comparable<BSTNode> {
      * @return true if successful
      */
     public boolean add(BSTNode toAdd) {
-        // TODO Implement this method
-        return false;
+        if (toAdd.getInfo() < this.info) {
+            if (getLeft() != null) {
+                return getLeft().add(toAdd);
+            } else {
+                setLeft(toAdd);
+                return true;
+            }
+        } else {
+            if (getRight() != null) {
+                return getRight().add(toAdd);
+            } else {
+                setRight(toAdd);
+                return true;
+            }
+        }
     }
 
     private void printPostOrder() {
         if (getLeft() != null) {
-            getLeft().printPreOrder();
+            getLeft().printPostOrder();
         }
         if (getRight() != null) {
-            getRight().printPreOrder();
+            getRight().printPostOrder();
         }
         System.out.print(getInfo() + " ");
     }
@@ -104,11 +119,11 @@ public class BSTNode extends Node implements Comparable<BSTNode> {
 
     private void printInOrder() {
         if (getLeft() != null) {
-            getLeft().printPreOrder();
+            getLeft().printInOrder();
         }
         System.out.print(getInfo() + " ");
         if (getRight() != null) {
-            getRight().printPreOrder();
+            getRight().printInOrder();
         }
     }
 

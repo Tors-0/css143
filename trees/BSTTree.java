@@ -27,8 +27,7 @@ public class BSTTree extends Tree {
      */
     @Override
     public boolean add() {
-        // TODO
-        return false;
+        return add((int) (Math.random() * 100));
     }
 
     /**
@@ -51,43 +50,19 @@ public class BSTTree extends Tree {
         // Calling the method to create our node allows
         // child classes to reuse this method.
         BSTNode newNode = createNewNode(value);
-
         BSTNode root = (BSTNode) this.getRoot();
-        while (root != null) {
-            if (value < root.getInfo()) {
-                if (root.getLeft() == null) {
-                    root.setLeft(newNode);
-                    break;
-                } else {
-                    root = root.getLeft();
-                }
-            } else {
-                if (root.getRight() == null) {
-                    root.setRight(newNode);
-                    break;
-                } else {
-                    root = root.getRight();
-                }
-            }
-        }
 
-        // TODO: Then update to you add the node recursively
-        // using the add() method in the BSTNode class.
-
-        return false;
+        return root.add(newNode);
     }
 
-    // TODO: generate a tree with 10-20 nodes, inclusive
     public static Tree createSomeTree() {
         int rootValue = (int) (Math.random()*10) + 45;
         BSTTree tree = new BSTTree(new BSTNode(rootValue));
-      /*
-      // this code should be generalized and fixed up
-      tree.add(20);
-      tree.add(15);
-      tree.add(5);
-      */
 
+        int count = (int) (10 + Math.round(Math.random() * 10));
+        for (int i = 0; i < count; i++) {
+            tree.add();
+        }
 
         return tree;
     }

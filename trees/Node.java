@@ -13,26 +13,31 @@ import java.util.List;
 
 public class Node {
 
-   private List<Node> children;
+    private List<Node> children;
 
-   public Node() {
-      children = new ArrayList<>();
-   }
+    public Node() {
+        children = new ArrayList<>();
+    }
 
-   public void addChild(Node node) {
-      // TODO
-   }
+    public void addChild(Node node) {
+        children.add(node);
+    }
 
-   public List<Node> getChildren() {
-      return children;
-   }
+    public List<Node> getChildren() {
+        return children;
+    }
 
-   // children should override
-   public void clickEvent(int modifiers) {
-      System.out.println("That tickled!");
-   }
-   
-   public String getNodeDisplay() {
-      return "";
-   }
+    // children should override
+    public void clickEvent(int modifiers) {
+        System.out.println("That tickled!");
+    }
+
+    public String getNodeDisplay() {
+        return "hi";
+    }
+
+    @Override
+    public String toString() {
+        return "    node";
+    }
 }

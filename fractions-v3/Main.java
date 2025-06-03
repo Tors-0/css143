@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -11,6 +13,7 @@ import java.util.Scanner;
  * - Use a FractionContainer class to hold the Fraction and the count
  * - Use a FractionTracker class to manage most of the work
  * - Main will interact with the user and dispatch commands
+ *
  *
  */
 public class Main {
@@ -45,17 +48,47 @@ public class Main {
     public String processCommand(String cmd) {
         if (cmd.equalsIgnoreCase("sortaf")) {
             // ask tracker to sort ascending by Fraction
+            tracker.sortByFraction(true);
             return tracker.toString();
         }
-        if (cmd.equalsIgnoreCase("sortdf")) {
+        else if (cmd.equalsIgnoreCase("sortdf")) {
             // ask tracker to sort descending by Fraction
+            tracker.sortByFraction(false);
             return tracker.toString();
         }
-        // TODO: complete the remaining commands
+        else if (cmd.equalsIgnoreCase("sortac")) {
+            tracker.sortByCount(true);
+            return tracker.toString();
+        }
+        else if (cmd.equalsIgnoreCase("sortdc")) {
+            tracker.sortByCount(false);
+            return tracker.toString();
+        }
 
-        return "TODO: return output. Don't print!";
+        String fileResult = processFile(cmd);
+        if (fileResult != null) return fileResult;
+        else return tracker.toString();
     }
 
+    /**
+     * Checks a file and prints out the number of equivalent fractions inside the file
+     * @param filename the relative path of the file
+     */
+    private String processFile(String filename) {
+        Scanner fileReader = null;
+        try {
+            fileReader = new Scanner(new FileInputStream(filename));
+        } catch (FileNotFoundException ex) {
+            return "Error reading file";
+        }
 
+        tracker.clear();
+
+        while (fileReader.hasNextLine()) {
+            tracker.add(new Fraction(fileReader.nextLine()));
+        }
+
+        return null;
+    }
 }
 
