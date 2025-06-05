@@ -31,18 +31,18 @@ public class Sort {
         System.out.println(Arrays.toString(bubbleArray));
         System.out.println();
 
-//        System.out.println("Array before selection sort:");
-//        System.out.println(Arrays.toString(selectionArray));
-//        selectionSort(selectionArray);
-//        System.out.println("Array after selection sort:");
-//        System.out.println(Arrays.toString(selectionArray));
-//        System.out.println();
-//
-//        System.out.println("Array before insertion sort:");
-//        System.out.println(Arrays.toString(insertionArray));
-//        insertionSort(insertionArray);
-//        System.out.println("Array after insertion sort:");
-//        System.out.println(Arrays.toString(insertionArray));
+        System.out.println("Array before selection sort:");
+        System.out.println(Arrays.toString(selectionArray));
+        selectionSort(selectionArray);
+        System.out.println("Array after selection sort:");
+        System.out.println(Arrays.toString(selectionArray));
+        System.out.println();
+
+        System.out.println("Array before insertion sort:");
+        System.out.println(Arrays.toString(insertionArray));
+        insertionSort(insertionArray);
+        System.out.println("Array after insertion sort:");
+        System.out.println(Arrays.toString(insertionArray));
 
         // TODO Test your string sort here
     }
@@ -84,7 +84,9 @@ public class Sort {
     // selection sort for ints
     public static void selectionSort(int[] numbers) {
         // Implement your sort following the given pseudocode
-
+        for (int i = 0; i < numbers.length - 1; i++) {
+            swap(numbers, i, findSmallest(numbers, i+1, numbers.length));
+        }
     }
 
     public static int findSmallest(int[] arr, int begin, int end) {
@@ -105,5 +107,14 @@ public class Sort {
      */
     public static void insertionSort(int[] numbers) {
         // Implement your insertion sort
+        for (int i = 1; i < numbers.length; i++) {
+            int key = numbers[i];
+            int hole = i - 1;
+            while (hole >= 0 && numbers[hole] > key) {
+                numbers[hole + 1] = numbers[hole];
+                hole--;
+            }
+                numbers[hole + 1] = key;
+        }
     }
 }
