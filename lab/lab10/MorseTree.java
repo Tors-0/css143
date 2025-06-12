@@ -61,12 +61,17 @@ public class MorseTree {
 	}
 
 	private TreeNode<Character> insertInSubtree(String morseStr, char letter, TreeNode<Character> subtree) {
-		if (subtree == null || morseStr.isEmpty()) {
-			subtree = new TreeNode<>(letter, null, null);
-		} else if (morseStr.charAt(0) == '.') {
-			subtree.right = insertInSubtree(morseStr.substring(1), letter, subtree.right);
-		} else if (morseStr.charAt(0) == '-') {
-			subtree.left = insertInSubtree(morseStr.substring(1), letter, subtree.left);
+		if (subtree == null) {
+			subtree = new TreeNode<>(null, null, null);
+		}
+		if (morseStr.isEmpty()) {
+			subtree.data = letter;
+		} else {
+			if (morseStr.charAt(0) == '.') {
+				subtree.right = insertInSubtree(morseStr.substring(1), letter, subtree.right);
+			} else if (morseStr.charAt(0) == '-') {
+				subtree.left = insertInSubtree(morseStr.substring(1), letter, subtree.left);
+			}
 		}
 		
 		return subtree;  //always the last line, always return the node you are working on
@@ -75,24 +80,21 @@ public class MorseTree {
 	public Character translate(String morseStr) {
 		return findInSubtree(morseStr, root);
 	}
-	
-	//TODO: recursively comlpete this function.  Very similar to insertInSubtree()
-	private Character findInSubtree(String morseStr, TreeNode subtree) {
-		//base case 1 : subtree is null 
-		//base case 2 : morseStr is of length 0
-		//recursive case 1: the first char in morseStr is a '.', so recursively traverse tree
-		//recursive case 2: the first char in the morseStr is a '-', so recurse accordingly
-		return null;  //remove this
+
+	private Character findInSubtree(String morseStr, TreeNode<Character> subtree) {
+		if (subtree == null) return null;
+		if (morseStr.isEmpty()) return subtree.data;
+		if (morseStr.charAt(0) == '.') return findInSubtree(morseStr.substring(1), subtree.right);
+		else return findInSubtree(morseStr.substring(1), subtree.left);
 	}
-	
-	//TODO: Non-recursive function that calls other (recursive) functions
+
 	public String translateString(String tokens) {
-		String retVal = "";
-		//build a scanner here using tokens as input
-		//iterate over the tokens calling translate on each token (substring separated by a space)
-		//	concat these characters and return them
-		
-		return retVal;
+		StringBuilder retVal = new StringBuilder();
+		String[] tokenList = tokens.split(" ");
+		for (String token : tokenList) {
+			retVal.append(translate(token));
+		}
+		return retVal.toString();
 	}
 
 
